@@ -5,6 +5,12 @@
   <!-- global variables -->
   <arg         name           = 'world_name'
                default        = 'race_track'/>
+  <arg	       name	      = 'car_name'
+	       default	      = 'car_1'/>
+  <arg	       name	      = 'keyboard_teleop'
+	       default	      = 'true'/>
+  <arg	       name	      = 'listen_offboard'
+	       default	      = 'false'/>
 
   <!-- global map server -->
   <node        name           = 'global_map_server'
@@ -31,6 +37,14 @@
                value          = 'true'/>
   <arg         name           = 'world_name'
                value          = '$(arg world_name)'/> </include>
+
+  <node	       name	      = 'command_multiplexer'
+	       pkg	      = 'f1tenth-sim'
+	       type	      = 'command_multiplexer.py'
+	       args	      = '$(arg car_name)
+				 $(arg listen_offboard)'
+	       output	      = 'screen'/>
+
 
   <!-- spawn car_2 -->
   <!--

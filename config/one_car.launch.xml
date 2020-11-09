@@ -18,7 +18,7 @@
   <arg         name           = 'remote_control'
                default        = 'false'/>
   <arg         name           = 'keyboard_control'
-               default        = 'false'/>
+               default        = 'true'/>
   <arg         name           = 'world_name'
                default        = 'race_track'/>
 

@@ -56,7 +56,8 @@
                respawn        = 'false'
                output         = 'screen'
                ns             = '$(arg car_name)'
-               args           = 'left_rear_wheel_velocity_controller
+               args           = '--no-timeout
+	       			 left_rear_wheel_velocity_controller
                                  right_rear_wheel_velocity_controller
                                  left_front_wheel_velocity_controller
                                  right_front_wheel_velocity_controller
