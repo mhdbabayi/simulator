@@ -355,7 +355,7 @@
     <collision>
       <origin xyz="0 0 0.25" rpy="0 0 0"/>
       <geometry>
-        <box size="0.033 0.175 0.030"/>
+        <box size="0.033 0.0 0.030"/>
       </geometry>
     </collision>
     <visual>
@@ -380,7 +380,7 @@
   <link name="$(arg robot_name)_camera_link">
     <inertial>
       <mass value="1e-5" />
-      <origin xyz="-2.5 1.5 1.75" rpy="0 .57 -0.57"/>
+      <origin xyz="-0.5 0.0 0.0" rpy="0 .57 -0.57"/>
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
   </link>
@@ -511,7 +511,7 @@
 
   <!-- camera object -->
   <xacro:unless value="$(optenv DISABLE_GAZEBO_CAMERA false)">
-    <gazebo reference="$(arg robot_name)_camera_link">
+    <gazebo reference="$(arg robot_name)_base_link">
       <sensor type="camera" name="$(arg robot_name)_left_sensor">
         <update_rate>30.0</update_rate>
         <!-- math.atan(320 / 687.8065795898438) * 2 -->
@@ -539,7 +539,7 @@
           <cameraName>/$(arg robot_name)/camera</cameraName>
           <imageTopicName>image</imageTopicName>
           <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-          <frameName>$(arg robot_name)_camera_link</frameName>
+          <frameName>$(arg robot_name)_base_link</frameName>
           <hackBaseline>0</hackBaseline><!-- set this to 0.12 for the second camera -->
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>

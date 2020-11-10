@@ -33,7 +33,7 @@
   <arg         name           = 'gui'
                default        = 'true'/>
   <arg         name           = 'run_camera'
-               default        = 'false'/>
+               default        = 'true'/>
 
   <!-- launch map to  odom tf -->
   <node        name           = 'map_world_link'
@@ -47,10 +47,12 @@
 
   <!-- launch gazebo with track -->
   <include     file           = '$(find gazebo_ros)/launch/empty_world.launch'>
-  <arg         name           = 'world_name'
-               value          = '$(find f1tenth-sim)/world/$(arg world_name).world'/>
+  <!--arg         name           = 'world_name'
+               value          = '$(find f1tenth-sim)/world/$(arg world_name).world'/-->
   <arg         name           = 'gui'
-               value          = '$(arg gui)'/> </include> </group>
+               value          = '$(arg gui)'/>
+  <arg	       name	      = 'verbose'
+  	       value          = 'true'/></include> </group>
 
   <!-- check if remote control is required -->
   <group       if             = '$(arg remote_control)'>
