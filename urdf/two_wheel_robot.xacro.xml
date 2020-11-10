@@ -50,7 +50,7 @@
   </xacro:macro>
  
   <xacro:macro name="caster_geometry">
-   <pose>-0.15 0 -0.05 0 0 0</pose>
+   <origin xyz="-0.15 0 -0.05" rpy="0 0 0"/>
    <geometry>
       <sphere>
 	<radius>.05</radius>
@@ -81,7 +81,7 @@
   <!-- Now the robot description-->
   
   <link name="chassis">
-    <pose>0 0 .1 0 0 0</pose>
+    <origin xyz="0 0 .1" rpy="0 0 0"/>
     <collision name='collision'>
       <xacro:chassis_collision/>
     </collision>
@@ -102,7 +102,7 @@
   </link>
 
   <link name="left_wheel">
-    <pose> 0.1 0.13 0.1 0 1.5707 1.5707</pose>
+    <origin xyz=" 0.1 0.13 0.1" rpy=" 0 1.5707 1.5707"/>
     <collision name="collision">
       <xacro:wheel_geometry/>
     </collision>
@@ -112,7 +112,7 @@
   </link>
   
   <link name="right_wheel">    
-    <pose> 0.1 -0.13 0.1 0 1.5707 1.5707</pose>
+    <origin xyz="0.1 -0.13 0.1" rpy="0 1.5707 1.5707"/>
     <collision name="collision">
       <xacro:wheel_geometry/>
     </collision>
@@ -122,7 +122,7 @@
   </link>
 
   <joint type="revolute" name="left_wheel_hinge">
-    <pose>0 0 -0.03 0 0 0</pose>
+    <origin xyz="0 0 -0.03" rpy="0 0 0"/>
     <child>left_wheel</child>
     <parent>chassis</parent>
     <axis>
@@ -131,7 +131,7 @@
   </joint>
 
   <joint type="revolute" name="right_wheel_hinge">
-    <pose>0 0 0.03 0 0 0</pose>
+    <origin xyz="0 0 0.03" rpy="0 0 0"/>
     <child>right_wheel</child>
     <parent>chassis</parent>
     <axis>
