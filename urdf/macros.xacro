@@ -533,6 +533,7 @@
             <stddev>0.007</stddev>
           </noise>
         </camera>
+	<pose> 0.0 0.1 0.0 0.0 -0.1 0.0</pose>
         <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
           <alwaysOn>true</alwaysOn>
           <updateRate>30.0</updateRate>

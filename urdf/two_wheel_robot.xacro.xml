@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+
+<robot name="jetbot_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Global namespace -->
+  <xacro:arg name="robot_name" default="car_1" />
+  <xacro:arg name="robot_skin" default="Blue" />
+
+  <!-- inertial parameter macros -->
+
+  <xacro:macro name="chassis_inertial_params">
+    <origin xyz="0.1477 0 0" rpy="0 0 0" />
+    <mass value="4.0" />
+    <inertia ixx="0.010609" ixy="0"          ixz="0"
+                            iyy="0.050409"   iyz="0"
+                                             izz="0.05865" />
+  </xacro:macro>
+
+  <xacro:macro name="left_wheel_inertial_params">
+    <origin xyz="0 0 -0.0225" rpy="0 0 0" />
+    <mass value="0.34055" />
+    <inertia ixx="0.00026046" ixy="0"          ixz="0"
+                              iyy="0.00026046" iyz="0"
+                                               izz="0.00041226" />
+  </xacro:macro>
+
+  <xacro:macro name="right_wheel_inertial_params">
+    <origin xyz="0 0 0.0225" rpy="0 0 0" />
+    <mass value="0.34055" />
+    <inertia ixx="0.00026046" ixy="0"          ixz="0"
+                              iyy="0.00026046" iyz="0"
+                                               izz="0.00041226" />
+  </xacro:macro>
+  
+  <xacro:macro name="chassis_geometry">
+    <geometry>
+      <box>
+	<size>.4 .2 .1</size>
+      </box>
+    </geometry>
+  </xacro:macro>
+
+  
+  <xacro:macro name="chassis_collision">
+    <geometry>
+      <box>
+	<size>.4 .2 .1</size>
+      </box>
+    </geometry>
+  </xacro:macro>
+ 
+  <xacro:macro name="caster_geometry">
+   <pose>-0.15 0 -0.05 0 0 0</pose>
+   <geometry>
+      <sphere>
+	<radius>.05</radius>
+      </sphere>
+    </geometry>
+  </xacro:macro>
+  <xacro:macro name="caster_surface">
+    <surface>
+      <friction>
+	<ode>
+	  <mu>0</mu>
+	  <mu2>0</mu2>
+	  <slip1>1.0</slip1>
+	  <slip2>1.0</slip2>
+	</ode>
+      </friction>
+    </surface>
+  </xacro:macro>
+  <xacro:macro name="wheel_geometry">
+    <geometry>
+      <cylinder>
+        <radius>.1</radius>
+        <length>.05</length>
+      </cylinder>
+    </geometry>
+  </xacro:macro>
+  
+  <!-- Now the robot description-->
+  
+  <link name="chassis">
+    <pose>0 0 .1 0 0 0</pose>
+    <collision name='collision'>
+      <xacro:chassis_collision/>
+    </collision>
+    <visual name='visual'>
+      <xacro:chassis_geometry/>
+    </visual>
+
+    <collision name='caster-collision'>
+      <xacro:caster_geometry/>
+      <surface>
+       <xacro:caster_surface/>
+      </surface>
+    </collision>
+
+    <visual name='caster_visual'>
+     <xacro:caster_geometry/>
+    </visual>
+  </link>
+
+  <link name="left_wheel">
+    <pose> 0.1 0.13 0.1 0 1.5707 1.5707</pose>
+    <collision name="collision">
+      <xacro:wheel_geometry/>
+    </collision>
+    <visual name="visual">
+      <xacro:wheel_geometry/>
+    </visual>
+  </link>
+  
+  <link name="right_wheel">    
+    <pose> 0.1 -0.13 0.1 0 1.5707 1.5707</pose>
+    <collision name="collision">
+      <xacro:wheel_geometry/>
+    </collision>
+    <visual name="visual">
+      <xacro:wheel_geometry/>
+    </visual>
+  </link>
+
+  <joint type="revolute" name="left_wheel_hinge">
+    <pose>0 0 -0.03 0 0 0</pose>
+    <child>left_wheel</child>
+    <parent>chassis</parent>
+    <axis>
+      <xyz>0 1 0</xyz>
+    </axis>
+  </joint>
+
+  <joint type="revolute" name="right_wheel_hinge">
+    <pose>0 0 0.03 0 0 0</pose>
+    <child>right_wheel</child>
+    <parent>chassis</parent>
+    <axis>
+      <xyz>0 1 0</xyz>
+    </axis>
+  </joint>  
